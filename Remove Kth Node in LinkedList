@@ -36,21 +36,24 @@
     
      ListNode* removeNthFromEnd(ListNode* head, int n) {
        
-    ListNode* start=new ListNode();
-    start->next=head;
+       //creating dummy node to overcome from edge cases.
+        ListNode* start=new ListNode();
+         start->next=head;
     
         ListNode* fast=start;
         ListNode* slow=start;
-    
+        
+         //traversing fast till n.
         for(int i=0;i<n;i++){
             fast=fast->next;
         }
-        
+        //now we traverse our slow and fast till when our fast next not becomes null
         while(fast->next){
             fast=fast->next;
             slow=slow->next;
         }
         
+        //then you will automatically see slow pointer is just behind the node which we want to delete .then simply do following operation.
         slow->next=slow->next->next;
         
         return start->next;
